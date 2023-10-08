@@ -8,18 +8,29 @@ let myMenu = [
     photo: "icecream.png",
     speed: 2,
     price: 300,
-    isBlock: true,
+    isBlock: false,
     id: 1,
   },
 
   {
-    title: "Tea",
-    photo: "",
-    speed: 2,
-    price: 100,
+    title: "Pizza",
+    photo:"icecream.png",
+    speed: 5,
+    price: 500,
     isBlock: false,
     id: 2,
   },
+
+  {
+    title: "Hot Dog",
+    photo:"icecream.png",
+    speed: 5,
+    price: 400,
+    isBlock: true,
+    id: 3,
+  },
+
+
 ];
 
 function showMenu() {
@@ -29,12 +40,26 @@ function showMenu() {
         <img src="img/menu/${myMenu[i].photo}" alt="" class="menu-card__image">
         <h2 class="menu-card__title">${myMenu[i].title}</h2>
         <h2 class="menu-card__price">${myMenu[i].price}</h2>
+        <button data-id="${myMenu[i].id}" class="buy_btn">Buy This</button>
         <h2 class="menu-card__time">${myMenu[i].speed}</h2>
     </div>
     `;
   }
 }
 showMenu();
+
+
+
+let buyBtn = document.getElementsByClassName('buy_btn')
+
+for (let i = 0; i < buyBtn.length; i++) {
+  buyBtn[i].addEventListener('click', function () {
+    let id = buyBtn[i].dataset.id
+    buyProduct(id)
+  })
+}
+
+
 
 function buyProduct(id) {
   let el = findProductById(id);
@@ -48,7 +73,7 @@ function buyProduct(id) {
   }
 }
 
-buyProduct(1);
+
 
 function findProductById(id) {
   for (let i = 0; i < myMenu.length; i++) {
